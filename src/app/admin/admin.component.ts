@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ScriptLoaderService } from '../services/script-loader.service';
@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
     FormsModule,
     CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
@@ -31,7 +32,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
     @Inject(PLATFORM_ID) public platformId: Object,
     private cd: ChangeDetectorRef,
     public router: Router,
-    private http: HttpClient
+    //private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +42,13 @@ export class AdminComponent implements OnInit, AfterViewInit {
     } else {
       // En SSR, marcar como cargado inmediatamente
       this.loadingResources = false;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Solo cargar scripts después de que los estilos estén listos
+      this.loadScriptsAfterStyles();
     }
   }
 
@@ -75,5 +83,38 @@ export class AdminComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {}
+  private loadScriptsAfterStyles(): void {
+    // 🔧 Esperar un poco más para asegurar que los estilos estén aplicados
+    const delay = this.stylesLoaded ? 100 : 500;
+    
+    setTimeout(() => {
+      const scripts = [
+        'https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js',
+        '/assets/plantilla-bootstrap/libs/jquery/dist/jquery.min.js',
+        '/assets/plantilla-bootstrap/libs/bootstrap/dist/js/bootstrap.bundle.min.js',
+        '/assets/plantilla-bootstrap/js/sidebarmenu.js',
+        '/assets/plantilla-bootstrap/js/app.min.js',
+        '/assets/plantilla-bootstrap/libs/apexcharts/dist/apexcharts.min.js',
+        '/assets/plantilla-bootstrap/libs/simplebar/dist/simplebar.js',
+        '/assets/plantilla-bootstrap/js/dashboard.js',
+        //'/assets/plantilla-welcome/js/main.js'
+      ];
+
+      this.scriptLoader.loadScripts(scripts)
+        .then(() => {
+          console.log('✅ Scripts cargados');
+          this.scriptsLoaded = true;
+          this.checkIfResourcesReady();
+          
+          // 🔧 Inicializar carrusel específicamente
+          //this.initializeCarousel();
+        })
+        .catch(err => {
+          //console.error('Error cargando scripts:', err);
+          this.scriptsLoaded = true;
+          this.checkIfResourcesReady();
+        });
+    }, delay);
+
+  }
 }

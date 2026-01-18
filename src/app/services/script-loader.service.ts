@@ -103,24 +103,6 @@ export class ScriptLoaderService {
     });
   }
 
-  loadChatbot(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    // Configuración global del ChatBot
-    (window as any)._ow = (window as any)._ow || {};
-    (window as any).__ow = {
-      organizationId: 'ad14c8fa-e9a6-459a-b64c-9f1e0f8f3ad7',
-      template_id: '676abead-1777-42cf-b94b-327c7181c4b0',
-      integration_name: 'manual_settings',
-      product_name: 'chatbot'
-    };
-
-    // Cargar el script principal del widget
-    this.loadScript('https://cdn.openwidget.com/openwidget.js')
-      .then(() => console.log('✅ ChatBot cargado correctamente'))
-      .catch(err => console.error('❌ Error cargando ChatBot:', err));
-  }
-
   loadStyles(styles: string[]): Promise<void> {
     if (!isPlatformBrowser(this.platformId)) {
       return Promise.resolve(); // No hacer nada en SSR

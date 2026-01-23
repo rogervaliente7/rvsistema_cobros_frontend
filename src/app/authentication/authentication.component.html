@@ -1,1 +1,55 @@
-<p>authentication works!</p>
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="header">
+      <h1>Bienvenido</h1>
+      <p>Accede a tu sistema de cobros</p>
+    </div>
+
+    <form (ngSubmit)="login()">
+
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="correo@empresa.com"
+          required
+        />
+      </div>
+
+      <div class="field password">
+        <label>Contraseña</label>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="••••••••"
+          required
+        />
+
+        <span class="eye" (click)="togglePassword()">
+          <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M1.5 12s4.5-7.5 10.5-7.5S22.5 12 22.5 12 18 19.5 12 19.5 1.5 12 1.5 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+
+          <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 3l18 18"/>
+            <path d="M10.6 10.6a2 2 0 002.8 2.8"/>
+            <path d="M6.5 6.5C3.8 8.7 1.5 12 1.5 12s4.5 7.5 10.5 7.5c2.1 0 4-0.7 5.6-1.8"/>
+            <path d="M14.1 4.7A10.9 10.9 0 0112 4.5C6 4.5 1.5 12 1.5 12"/>
+          </svg>
+        </span>
+      </div>
+
+      <button type="submit" class="btn-primary">
+        Iniciar sesión
+      </button>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+
+  </div>
+</div>

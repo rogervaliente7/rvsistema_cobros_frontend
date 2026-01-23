@@ -1,0 +1,86 @@
+<div class="cobros-container">
+
+  <!-- CARD PRINCIPAL -->
+  <div class="card">
+    <div class="header">
+      <div>
+        <h2>{{ data.nombre }}</h2>
+        <p>NIU {{ data.niu }} • Cuenta {{ data.cuenta }}</p>
+      </div>
+      <div class="bank">{{ data.banco }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <h4>Información del Cliente</h4>
+      <div class="grid">
+        <div>
+          <label>Teléfono</label>
+          <span>{{ data.telefono }}</span>
+        </div>
+        <div>
+          <label>Dirección</label>
+          <span>{{ data.direccion }}</span>
+        </div>
+        <div>
+          <label>Referencia</label>
+          <span>{{ data.referencia }}</span>
+        </div>
+        <div>
+          <label>Producto</label>
+          <span>{{ data.producto }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section deuda">
+      <h4>Detalle de Deuda</h4>
+      <div class="grid">
+        <div>
+          <label>Saldo</label>
+          <span>${{ data.saldo }}</span>
+        </div>
+        <div>
+          <label>Capital</label>
+          <span>${{ data.capital }}</span>
+        </div>
+        <div>
+          <label>Intereses</label>
+          <span>${{ data.intereses }}</span>
+        </div>
+        <div>
+          <label>Mora</label>
+          <span>${{ data.mora }}</span>
+        </div>
+      </div>
+
+      <div class="total">
+        Total Exigible: <strong>${{ data.total }}</strong>
+      </div>
+
+      <div class="fecha">
+        Último pago: {{ data.ultimoPago }}
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIAL DE GESTIONES -->
+  <div class="gestiones">
+    <h3>Historial de Gestiones</h3>
+    <div class="timeline">
+      <div class="gestion" *ngFor="let g of gestiones">
+        <div class="dot"></div>
+        <div class="contenido">
+          <div class="top">
+            <strong>{{ g.usuario }}</strong>
+            <span>{{ g.fecha }}</span>
+          </div>
+          <div class="resultado">{{ g.resultado }}</div>
+          <p class="comentario">{{ g.comentario }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

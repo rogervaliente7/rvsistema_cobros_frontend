@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ScriptLoaderService } from '../services/script-loader.service';
 import { HttpClient } from '@angular/common/http';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { FooterComponent } from './footer/footer.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +14,10 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     RouterLink,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MainHeaderComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './admin.component.html',

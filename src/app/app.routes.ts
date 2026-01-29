@@ -3,6 +3,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
+
 export const routes: Routes = [
     // NAMESPACE PARA AUTHENTICATION, LOGIN, SIGNUP, FORGOT PASSWORD
     {

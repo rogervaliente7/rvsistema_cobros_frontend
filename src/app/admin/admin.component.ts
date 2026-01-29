@@ -1,22 +1,26 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, Router } from '@angular/router';
+import { RouterLink, Router, RouterOutlet } from '@angular/router';
 import { ScriptLoaderService } from '../services/script-loader.service';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainHeaderComponent } from './main-header/main-header.component';
+import { BodyHeaderComponent } from './body-header/body-header.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
   imports: [
     RouterLink,
+    RouterOutlet,
     FormsModule,
     CommonModule,
     MainHeaderComponent,
     SidebarComponent,
+    FooterComponent,
+    BodyHeaderComponent,
     FooterComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

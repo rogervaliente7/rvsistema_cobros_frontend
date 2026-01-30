@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { GestionesComponent } from './admin/gestiones/gestiones.component';
 
 
 export const routes: Routes = [
@@ -15,7 +16,8 @@ export const routes: Routes = [
         path: 'admin', component: AdminComponent,
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full'},
-            { path: 'home', component: AdminHomeComponent}
+            { path: 'home', component: AdminHomeComponent},
+            { path: 'gestiones', component: GestionesComponent}
         ]  
     },
 

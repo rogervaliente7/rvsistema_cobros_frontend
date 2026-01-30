@@ -20,8 +20,7 @@ import { BodyHeaderComponent } from './body-header/body-header.component';
     MainHeaderComponent,
     SidebarComponent,
     FooterComponent,
-    BodyHeaderComponent,
-    FooterComponent
+    BodyHeaderComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './admin.component.html',

@@ -1,1 +1,192 @@
-<p>gestiones works!</p>
+<div class="page container-fluid py-3">
+
+  <!-- ===== HEADER CLIENTE ===== -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h4 class="fw-bold mb-0">{{cliente.NombreSociedad}}</h4>
+      <small class="text-muted">
+        NIU: {{cliente.NIUCliente}} | DUI: {{cliente.NumeroDUI}}
+      </small>
+    </div>
+
+    <button class="btn btn-primary" (click)="abrirModal()">
+      + Nueva Gestión
+    </button>
+  </div>
+
+  <!-- ===== TABS REFERENCIAS ===== -->
+  <div class="list-group list-group-horizontal mb-3 overflow-auto shadow-sm rounded">
+
+    <button
+      *ngFor="let c of cuentas; trackBy: trackByReferencia"
+      (click)="cambiarCuenta(c)"
+      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+      [class.active]="c === cuentaActiva">
+
+      <span>{{c.Referencia}}</span>
+
+
+    </button>
+
+  </div>
+
+  <!-- ===== PANEL PRINCIPAL ===== -->
+  <div *ngIf="cuentaActiva">
+
+    <div class="card shadow border-0 mb-3">
+
+      <!-- HEADER -->
+      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+
+        <div>
+          <span class="badge fs-6"
+                [ngClass]="{
+                  'bg-success': cuentaActiva.ESTADO === 'Activo',
+                  'bg-warning text-dark': cuentaActiva.ESTADO === 'En Mora',
+                  'bg-danger': cuentaActiva.ESTADO === 'Castigada'
+                }">
+            {{cuentaActiva.ESTADO}}
+          </span>
+
+          <span class="ms-2 text-muted">
+            {{cuentaActiva.tipoCartera}} | {{cuentaActiva.RangodeMora}}
+          </span>
+        </div>
+
+        <div class="text-end">
+          <div class="fw-bold fs-5 text-primary">
+            ${{cuentaActiva.TOTALDEUDA | number:'1.2-2'}}
+          </div>
+          <small class="text-muted">Total deuda</small>
+        </div>
+
+      </div>
+
+      <!-- BODY -->
+      <div class="card-body">
+
+        <div class="row">
+
+          <!-- IZQUIERDA -->
+          <div class="col-md-8">
+            <div class="row g-2">
+
+              <div class="col-md-6"><small class="text-muted">Producto</small><div class="fw-semibold">{{cuentaActiva.tipoproducto}}</div></div>
+              <div class="col-md-6"><small class="text-muted">Subtipo</small><div class="fw-semibold">{{cuentaActiva.subtipoproduc || 'N/A'}}</div></div>
+              <div class="col-md-6"><small class="text-muted">Capital</small><div class="fw-semibold">${{cuentaActiva.CAPITAL | number:'1.2-2'}}</div></div>
+              <div class="col-md-6"><small class="text-muted">Otro crédito al día</small><div class="fw-semibold">{{cuentaActiva.OTRO_CREDITO_AL_DIA}}</div></div>
+
+              <div class="col-md-6"><small class="text-muted">F. Otorgamiento</small><div>{{cuentaActiva.FECHAOTORGAMIENTO}}</div></div>
+              <div class="col-md-6"><small class="text-muted">F. Vencimiento</small><div>{{cuentaActiva.FECHAVENCIMIENTO}}</div></div>
+              <div class="col-md-6"><small class="text-muted">F. Último pago</small><div>{{cuentaActiva.FECHAULTPAG}}</div></div>
+              <div class="col-md-6"><small class="text-muted">F. Castigo</small><div>{{cuentaActiva.FECHACASTIGO}}</div></div>
+
+            </div>
+          </div>
+
+          <!-- DERECHA -->
+          <div class="col-md-4 border-start">
+            <small class="text-muted">Dirección</small>
+            <div class="mb-2">{{cuentaActiva.Direccion}}, {{cuentaActiva.Municipio}}, {{cuentaActiva.Departamento}}</div>
+
+            <small class="text-muted">Teléfonos</small>
+            <div class="mb-2">{{cuentaActiva.Telefonos}}</div>
+
+            <small class="text-muted">Estrategia</small>
+            <div class="mb-2">{{cuentaActiva.Estrategia_Global}}</div>
+
+            <small class="text-muted">Gestor</small>
+            <div class="mb-2 fw-semibold">{{cuentaActiva.GESTOR}}</div>
+
+            <small class="text-muted">Grupo</small>
+            <div class="fw-semibold">{{cuentaActiva.Grupo}}</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ===== HISTORIAL ===== -->
+    <div class="card shadow border-0" *ngIf="cuentaActiva.gestiones?.length">
+
+      <div class="card-header fw-bold bg-light">
+        Historial de Gestiones
+      </div>
+
+      <div class="card-body">
+
+        <div *ngFor="let g of cuentaActiva.gestiones" class="border-bottom mb-2 pb-2">
+
+          <div class="d-flex justify-content-between">
+            <div class="fw-semibold text-primary">{{g.resultado}} → {{g.accion}}</div>
+            <small class="text-muted">{{g.fecha}}</small>
+          </div>
+
+          <div>{{g.comentario}}</div>
+          <small class="text-muted">Registrado por {{g.usuario}}</small>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===== MODAL ===== -->
+  <div *ngIf="mostrarModal" class="modal fade show d-block">
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar Nueva Gestión</h5>
+          <button class="btn-close" (click)="cerrarModal()"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="mb-2">
+            <label>Resultado</label>
+            <select class="form-select" [(ngModel)]="gestion.resultado" (change)="gestion.accion=''">
+              <option value="">Seleccione</option>
+              <option *ngFor="let r of resultados()" [value]="r">{{r}}</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label>Acción</label>
+            <select class="form-select" [(ngModel)]="gestion.accion">
+              <option value="">Seleccione</option>
+              <option *ngFor="let a of acciones()" [value]="a">{{a}}</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <label>Comentario</label>
+            <textarea class="form-control" rows="3" [(ngModel)]="gestion.comentario"></textarea>
+          </div>
+
+          <!-- ✅ CHECK -->
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="aplicarATodas">
+            <label class="form-check-label fw-semibold text-primary">
+              Aplicar a todas las referencias
+            </label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+          <button class="btn btn-success" (click)="guardarGestion()">Guardar Gestión</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

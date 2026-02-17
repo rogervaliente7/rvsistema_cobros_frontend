@@ -1,0 +1,94 @@
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #020617;
+}
+
+.header p {
+  margin: 0.4rem 0 2rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.4rem;
+}
+
+.field label {
+  font-size: 0.75rem;
+  margin-bottom: 0.4rem;
+  color: #475569;
+}
+
+.field input {
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.password {
+  position: relative;
+}
+
+.eye {
+  position: absolute;
+  right: 0.8rem;
+  top: 2.1rem;
+  cursor: pointer;
+}
+
+.eye svg {
+  width: 18px;
+  height: 18px;
+  stroke: #64748b;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.8rem;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 0.8rem;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.error {
+  margin-top: 1.2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #dc2626;
+}

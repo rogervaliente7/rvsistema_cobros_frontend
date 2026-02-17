@@ -3,6 +3,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { AdminComponent } from './admin/admin.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { GestionesComponent } from './admin/gestiones/gestiones.component';
+import { EmpleadosComponent } from './admin/empleados/empleados.component';
 
 
 export const routes: Routes = [
@@ -17,7 +18,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full'},
             { path: 'home', component: AdminHomeComponent},
-            { path: 'gestiones', component: GestionesComponent}
+            { path: 'gestiones', component: GestionesComponent},
+            { path: 'empleados', component: EmpleadosComponent}
         ]  
     },
 

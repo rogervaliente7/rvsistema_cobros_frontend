@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <div class="d-md-flex align-items-center">
+          <div>
+            <h4 class="card-title">Lista de Empleados</h4>
+            <p class="card-subtitle">
+              Gestión de empleados registrados
+            </p>
+          </div>
+          <div class="ms-auto mt-3 mt-md-0">
+            <select class="form-select theme-select border-0">
+              <option value="1">Activos</option>
+              <option value="2">Inactivos</option>
+              <option value="3">Todos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+          <table class="table mb-0 text-nowrap varient-table align-middle fs-3">
+            
+            <thead>
+              <tr>
+                <th scope="col" class="px-0 text-muted">
+                  Empleado
+                </th>
+                <th scope="col" class="px-0 text-muted">
+                  Email
+                </th>
+                <th scope="col" class="px-0 text-muted">
+                  Estado
+                </th>
+                <th scope="col" class="px-0 text-muted text-end">
+                  Fecha Registro
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let emp of employees">
+                
+                <td class="px-0">
+                  <div class="d-flex align-items-center">
+                    
+                    <div class="ms-3">
+                      <h6 class="mb-0 fw-bolder">
+                        {{ emp.first_name }} {{ emp.last_name }}
+                      </h6>
+                      <span class="text-muted">
+                        {{ emp.position }}
+                      </span>
+                    </div>
+                  </div>
+                </td>
+
+                <td class="px-0">
+                  {{ emp.email }}
+                </td>
+
+                <td class="px-0">
+                  <span 
+                    class="badge"
+                    [ngClass]="emp.is_active ? 'bg-success' : 'bg-danger'">
+                    {{ emp.is_active ? 'Activo' : 'Inactivo' }}
+                  </span>
+                </td>
+
+                <td class="px-0 text-dark fw-medium text-end">
+                  {{ emp.created_at | date:'dd/MM/yyyy' }}
+                </td>
+
+              </tr>
+
+              <!-- Mensaje si no hay empleados -->
+              <tr *ngIf="employees.length === 0">
+                <td colspan="4" class="text-center py-4 text-muted">
+                  No hay empleados registrados
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

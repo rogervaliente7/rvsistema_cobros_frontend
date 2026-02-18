@@ -36,6 +36,10 @@
                 <th scope="col" class="px-0 text-muted text-end">
                   Fecha Registro
                 </th>
+
+                <th>
+                  Actions
+                </th>
               </tr>
             </thead>
 
@@ -72,6 +76,13 @@
                   {{ emp.created_at | date:'dd/MM/yyyy' }}
                 </td>
 
+                <td class="px-0 text-center">
+                  <button 
+                    class="btn btn-sm btn-primary"
+                    [routerLink]="['/admin/empleados/edit', emp.id]">
+                    <i class="ti ti-edit"></i>
+                  </button>
+                </td>
               </tr>
 
               <!-- Mensaje si no hay empleados -->
@@ -80,6 +91,8 @@
                   No hay empleados registrados
                 </td>
               </tr>
+
+              
 
             </tbody>
 

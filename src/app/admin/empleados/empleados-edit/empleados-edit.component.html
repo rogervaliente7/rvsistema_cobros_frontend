@@ -12,6 +12,10 @@
                     </div>
                 </div>
 
+                <br><br>
+                <h4 class="card-title">Informacion Personal</h4>
+                <hr>
+
                 <div *ngIf="loading" class="text-center py-4">
                     <div class="spinner-border text-primary"></div>
                 </div>
@@ -25,33 +29,146 @@
                     <form (ngSubmit)="saveEmpleado()" #form="ngForm">
 
                         <div class="row">
-
                             <!-- Nombre -->
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control" [(ngModel)]="empleado.first_name"
                                     name="first_name" required>
                             </div>
 
                             <!-- Apellido -->
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Apellido</label>
                                 <input type="text" class="form-control" [(ngModel)]="empleado.last_name"
                                     name="last_name" required>
                             </div>
 
                             <!-- Email -->
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" [(ngModel)]="empleado.email" name="email">
                             </div>
 
                             <!-- Teléfono -->
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" [(ngModel)]="empleado.phone" name="phone">
                             </div>
 
+                            <!-- Dui -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Dui</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.dui"
+                                    name="dui" required>
+                            </div>
+
+                            <!-- Nit -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Nit</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.nit" name="nit">
+                            </div>
+
+                             <!-- Fecha Nacimiento -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" [(ngModel)]="empleado.birth_date" name="birth_date">
+                            </div>
+
+                            <!-- Genero -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Género</label>
+                                <select class="form-select"
+                                        [(ngModel)]="empleado.gender"
+                                        name="genero"
+                                        required>
+                                    
+                                    <option value="" disabled selected>Seleccione género</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
+
+                                </select>
+                            </div>
+
+                            <!-- Estado Civil -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Estado civil</label>
+                                <select class="form-select"
+                                        [(ngModel)]="empleado.marital_status"
+                                        name="marital_status" required>
+
+                                    <option value="" disabled selected>Seleccione estado civil</option>
+                                    <option value="Soltero">Soltero</option>
+                                    <option value="Casado">Casado</option>
+                                    <option value="Divorciado">Divorciado</option>
+
+                                </select>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Dirección</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.address" name="address">
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <h4 class="card-title">Informacion Laboral</h4>
+                        <hr>
+
+                        <div class="row">
+                            <!-- Fecha Ingreso -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Fecha Ingreso</label>
+                                <input type="date" class="form-control" [(ngModel)]="empleado.hire_date" name="hire_date">
+                            </div>
+
+                            <!-- Fecha Terminacion -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Fecha terminacion</label>
+                                <input type="date" class="form-control" [(ngModel)]="empleado.termination_date" name="termination_date">
+                            </div>
+
+                            <!-- Position -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Puesto Laboral</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.position" name="position">
+                            </div>
+
+                            <!-- Area departamento -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Departamento laboral</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.department" name="department">
+                            </div>
+
+                            <!-- Salario -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Salario Base</label>
+                                <input type="number" class="form-control" [(ngModel)]="empleado.salary_base" name="salary_base">
+                            </div>
+
+                            <!-- Nombre del Banco -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Banco</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.bank_name" name="bank_name">
+                            </div>
+
+                            <!-- Cuenta Bancaria -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Cuenta Bancaria</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.bank_account" name="bank_account">
+                            </div>
+
+                            <!-- No Seg. Social -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">No Seg. Social</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.isss_number" name="isss_number">
+                            </div>
+
+                            <!-- No Seg. Afp -->
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">No Afp</label>
+                                <input type="text" class="form-control" [(ngModel)]="empleado.afp_number" name="afp_number">
+                            </div>
                         </div>
 
                         <!-- Botones -->

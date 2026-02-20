@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { Empleado } from '../models/empleado.model';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,10 +24,17 @@ export class EmpleadosComponent implements OnInit {
    constructor(
     @Inject(PLATFORM_ID) public platformId: Object,
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['updated']) {
+        alert('Empleado actualizado correctamente ✅');
+      }
+    });
+
     this.getEmployees();
   }
 

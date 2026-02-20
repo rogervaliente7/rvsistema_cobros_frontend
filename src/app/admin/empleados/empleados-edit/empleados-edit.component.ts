@@ -29,27 +29,71 @@ export class EmpleadosEditComponent implements OnInit {
     if (id) this.getEmpleado(id);
   }
 
+  // getEmpleado(id: string) {
+  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  //   this.http.get<Empleado>(`${this.API_BASE_URL}api/admin/employees/${id}`, { headers })
+  //     .subscribe({
+  //       next: (data) => { this.empleado = data; this.loading = false; },
+  //       error: (err) => { console.error(err); this.error = 'No se pudo cargar el empleado'; this.loading = false; }
+  //     });
+  // }
+
   getEmpleado(id: string) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.get<Empleado>(`${this.API_BASE_URL}api/admin/employees/${id}`, { headers })
-      .subscribe({
-        next: (data) => { this.empleado = data; this.loading = false; },
-        error: (err) => { console.error(err); this.error = 'No se pudo cargar el empleado'; this.loading = false; }
-      });
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  this.http.get<Empleado>(`${this.API_BASE_URL}api/admin/employees/${id}`, { headers })
+    .subscribe({
+      next: (data) => {
+
+        // 🔥 Formatear fechas antes de asignar
+        if (data.hire_date) {
+          data.hire_date = this.formatDate(data.hire_date);
+        }
+
+        if (data.termination_date) {
+          data.termination_date = this.formatDate(data.termination_date);
+        }
+
+        if (data.birth_date) {
+          data.birth_date = this.formatDate(data.birth_date);
+        }
+
+        this.empleado = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.error = 'No se pudo cargar el empleado';
+        this.loading = false;
+      }
+    });
   }
 
   saveEmpleado() {
     if (!this.empleado) return;
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     this.http.put(`${this.API_BASE_URL}api/admin/employees/${this.empleado.id}`, this.empleado, { headers })
       .subscribe({
-        next: () => this.router.navigate(['/admin/empleados']),
-        error: (err) => { console.error(err); this.error = 'No se pudo guardar'; }
+        next: () => {
+          this.router.navigate(['/admin/empleados'], {
+            queryParams: { updated: 'true' }
+          });
+        },
+        error: (err) => {
+          console.error(err);
+          this.error = 'No se pudo guardar';
+        }
       });
   }
 
   cancelar() {
     this.router.navigate(['/admin/empleados']);
+  }
+
+  formatDate(date: string): string {
+    if (!date) return '';
+    return new Date(date).toISOString().substring(0, 10);
   }
 }

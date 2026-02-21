@@ -62,4 +62,8 @@ export class EmpleadosComponent implements OnInit {
       }
     });
   }
+
+  crearEmpleado() {
+    this.router.navigate(['/admin/empleados/new']);
+  }
 }

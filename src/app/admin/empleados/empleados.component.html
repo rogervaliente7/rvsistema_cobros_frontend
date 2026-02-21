@@ -3,19 +3,24 @@
     <div class="card">
       <div class="card-body">
 
-        <div class="d-md-flex align-items-center">
+        <div class="d-md-flex align-items-center justify-content-between mb-3">
           <div>
             <h4 class="card-title">Lista de Empleados</h4>
-            <p class="card-subtitle">
-              Gestión de empleados registrados
-            </p>
+            <p class="card-subtitle">Gestión de empleados registrados</p>
           </div>
-          <div class="ms-auto mt-3 mt-md-0">
-            <select class="form-select theme-select border-0">
+        
+          <div class="d-flex gap-2 align-items-center">
+            <!-- Selector de estado -->
+            <select class="form-select form-select-sm theme-select">
               <option value="1">Activos</option>
               <option value="2">Inactivos</option>
               <option value="3">Todos</option>
             </select>
+        
+            <!-- Botón Nuevo Empleado -->
+            <button class="btn btn-primary" (click)="crearEmpleado()">
+               <i class="ti ti-plus"></i>
+            </button>
           </div>
         </div>
 
@@ -78,7 +83,7 @@
 
                 <td class="px-0 text-center">
                   <button 
-                    class="btn btn-sm btn-primary"
+                    class="btn btn-sm btn-info"
                     [routerLink]="['/admin/empleados/edit', emp.id]">
                     <i class="ti ti-edit"></i>
                   </button>

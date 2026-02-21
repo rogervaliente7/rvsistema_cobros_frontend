@@ -20,6 +20,8 @@ export interface Empleado {
   bank_name: string;
   bank_account: string;
   is_active: boolean;
+  afp_type: string;
+  nivel_edu_code: string;
   created_at: string;
   updated_at: string;
 }

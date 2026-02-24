@@ -1,0 +1,15 @@
+.page{
+  background:#f4f6f9;
+  min-height:100vh;
+  padding:20px;
+}
+
+.card{
+  border-radius:10px;
+}
+
+.table th{
+  width:160px;
+  color:#6c757d;
+  font-weight:600;
+}

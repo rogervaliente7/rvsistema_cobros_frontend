@@ -1,1 +1,31 @@
-<p>authentication works!</p>
+<div class="auth-container">
+  <div class="auth-card">
+
+    <div class="logo">
+      <h2>🌌 Aurora</h2>
+    </div>
+
+    <h3 class="title">Bienvenido</h3>
+    <p class="subtitle">Accede a tu sistema de cobros</p>
+
+    <form (ngSubmit)="login()">
+
+      <div class="input-group">
+        <input type="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email" required>
+      </div>
+
+      <div class="input-group password-group">
+        <input [type]="showPassword ? 'text' : 'password'" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+        <span class="toggle" (click)="togglePassword()">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </span>
+      </div>
+
+      <button type="submit" class="btn-login">Iniciar sesión</button>
+
+      <p *ngIf="error" class="error-msg">{{ error }}</p>
+    </form>
+
+    <p class="footer-text">© 2026 Aurora. Todos los derechos reservados.</p>
+  </div>
+</div>

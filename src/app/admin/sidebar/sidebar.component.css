@@ -1,0 +1,13 @@
+/* ==========================
+   Sidebar Iconos y Texto Blanco
+========================== */
+.left-sidebar,
+.left-sidebar .sidebar-link,
+.left-sidebar .sidebar-link i,
+.left-sidebar .hide-menu {
+    color: #ffffff; /* texto e iconos blancos */
+}
+
+.left-sidebar .sidebar-link i {
+    fill: #ffffff; /* para iconos SVG si aplica */
+}

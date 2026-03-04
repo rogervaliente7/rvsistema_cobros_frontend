@@ -1,0 +1,94 @@
+<div class="carteras-container container mt-4">
+
+  <h2>Carteras</h2>
+
+  <!-- Botón para abrir modal -->
+  <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createCarteraModal" (click)="openCreateModal()">
+    + Nueva Cartera
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="createCarteraModal" tabindex="-1" aria-labelledby="createCarteraModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="createCarteraModalLabel">Crear Nueva Cartera</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="carteraName" class="form-label">Nombre</label>
+              <input type="text" id="carteraName" [(ngModel)]="newCartera.name" name="name" class="form-control" placeholder="Nombre de la cartera">
+            </div>
+
+            <div class="mb-3">
+              <label for="carteraTipo" class="form-label">Tipo</label>
+              <input type="text" id="carteraTipo" [(ngModel)]="newCartera.tipo" name="tipo" class="form-control" placeholder="Tipo de cartera">
+            </div>
+
+            <div class="mb-3">
+              <label for="companyId" class="form-label">ID de la Empresa</label>
+              <input type="number" id="companyId" [(ngModel)]="newCartera.companyId" name="companyId" class="form-control" placeholder="ID de la empresa">
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="createCartera()" data-bs-dismiss="modal">Crear</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de carteras -->
+  <table class="table table-striped table-bordered carteras-table">
+    <thead class="table-dark">
+      <tr>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Empresa</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of carteras">
+        <!-- Nombre -->
+        <td *ngIf="editingCartera?.id !== c.id">{{ c.name }}</td>
+        <td *ngIf="editingCartera?.id === c.id">
+          <input [(ngModel)]="editingCartera!.name" class="form-control form-control-sm">
+        </td>
+
+        <!-- Tipo -->
+        <td *ngIf="editingCartera?.id !== c.id">{{ c.tipo }}</td>
+        <td *ngIf="editingCartera?.id === c.id">
+          <input [(ngModel)]="editingCartera!.tipo" class="form-control form-control-sm">
+        </td>
+
+        <!-- Empresa -->
+        <td>{{ c.companyName }}</td>
+
+        <!-- Activo con span -->
+        <td>
+          <span [ngClass]="c.isActive ? 'badge bg-success' : 'badge bg-danger'">
+            {{ c.isActive ? 'Sí' : 'No' }}
+          </span>
+        </td>
+
+        <!-- Acciones -->
+        <td>
+          <button *ngIf="editingCartera?.id !== c.id" class="btn btn-sm btn-warning me-1" (click)="editCartera(c)">Editar</button>
+          <button *ngIf="editingCartera?.id === c.id" class="btn btn-sm btn-success me-1" (click)="updateCartera()">Guardar</button>
+          <button *ngIf="editingCartera?.id === c.id" class="btn btn-sm btn-secondary me-1" (click)="cancelEdit()">Cancelar</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteCartera(c)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

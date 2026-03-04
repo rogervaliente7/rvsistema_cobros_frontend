@@ -7,6 +7,6 @@ bootstrapApplication(AppComponent, {
   ...appConfig,
   providers: [
     ...(appConfig.providers || []),
-    provideHttpClient(withFetch()) // ← aquí habilitas el uso de Fetch API
+    provideHttpClient(withFetch())
   ]
 }).catch((err) => console.error(err));

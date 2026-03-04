@@ -1,0 +1,136 @@
+.carteras-container {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f5f7fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+/* Tabla moderna tipo dashboard */
+.carteras-table th,
+.carteras-table td {
+  border: none;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.carteras-table th {
+  background-color: #1e40af; /* azul profesional */
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.carteras-table tr {
+  background-color: #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.carteras-table tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Inputs editables */
+.edit-input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Badges modernos */
+.badge {
+  font-size: 0.85em;
+  padding: 0.35em 0.6em;
+  border-radius: 999px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 45px;
+  text-align: center;
+}
+
+.bg-success { background-color: #16a34a !important; } /* verde elegante */
+.bg-danger { background-color: #6b7280 !important; }   /* gris profesional */
+
+/* Botones modernos y profesionales */
+.btn-sm {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 5px 12px;
+  transition: all 0.2s;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-size: 0.875rem;
+}
+
+/* Colores sobrios para botones */
+.btn-warning { 
+  background-color: #6b7280; /* gris azulado */
+  color: #f9fafb;
+}
+.btn-warning:hover { 
+  background-color: #4b5563; 
+}
+
+.btn-success { 
+  background-color: #16a34a; /* verde elegante */
+  color: #ffffff; 
+}
+.btn-success:hover { 
+  background-color: #15803d; 
+}
+
+.btn-secondary { 
+  background-color: #9ca3af; /* gris neutro */
+  color: #1f2937; 
+}
+.btn-secondary:hover { 
+  background-color: #6b7280; 
+}
+
+.btn-danger { 
+  background-color: #b91c1c; /* rojo oscuro */
+  color: #ffffff; 
+}
+.btn-danger:hover { 
+  background-color: #7f1d1d; 
+}
+
+/* Modal estilizado */
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border: none;
+}
+
+.modal-header, .modal-footer {
+  border: none;
+}
+
+.modal-body input {
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+/* Botón de abrir modal */
+.btn-primary {
+  background-color: #1e40af; /* azul profesional */
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.btn-primary:hover {
+  background-color: #1e3a8a;
+}
